@@ -1,0 +1,9 @@
+Package: freemobile-smsapi
+Version: 1.0.0-0
+Section: base
+Priority: optional
+Architecture: all
+Depends: bash, curl
+Maintainer: CYOSP
+Description: A Bash API for Free Mobile SMS notification service
+Homepage: http://www.cyosp.com
