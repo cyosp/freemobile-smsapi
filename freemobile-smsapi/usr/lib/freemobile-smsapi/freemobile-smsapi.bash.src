@@ -1,0 +1,70 @@
+#!/bin/bash
+
+###############################################################################
+#                                                                             #
+# Author: CYOSP                                                               #
+# Version: 1.0.0                                                              #
+#                                                                             #
+# --------------------------------------------------------------------------- #
+#                                                                             #
+# 1.0.0 - 2016-12-04                                                          #
+#  - First version                                                            #
+#                                                                             #
+###############################################################################
+
+
+#
+# Free Mobile SMS API documentation
+#
+# Request can be executed in GET or in POST
+# URL to use: https://smsapi.free-mobile.fr/sendmsg
+# Arguments:
+#  * user: Free Mobile login
+#  * pass: Free Mobile anthentication key associated to login
+#  * msg:  SMS content:
+#           * In URL encoded for GET request
+#           * In raw text for POST request
+#
+# Example:
+#  * Send "Hello World !" with a GET request:
+#     * https://smsapi.free-mobile.fr/sendmsg?user=12345678&pass=1a2B3c4D5e6F7g&msg=Hello%20World%20!
+#
+# Request return codes:
+#  * 200: SMS has been sent
+#  * 400: A mandatory parameter is missing
+#  * 402: To many calls in a reduce laps of time
+#  * 403: SMS notification service is not enabled or bad login/authentication key
+#  * 500: Server error. Try later
+
+
+# $DEV_ROOT is a variable set in development mode to specify locatation of the configuration file
+# In Production $DEV_ROOT is not set in order to have configuration file stored in /etc
+. $DEV_ROOT/etc/freemobile-smsapi/freemobile-smsapi.conf.src
+
+#
+# callFreeMobileSmsApi function sends the SMS content in argument(s) following information defined in the configuration file
+# SMS content sent is prefixed with the name of the script which has sourced the library
+# It allows to know when receiving the SMS which process has sent it
+# Example: myScript.bash use the library and calls: callFreeMobileSmsApi "Test"
+#          It will send the SMS: "[myScript.bash] Test"
+#
+# Return 0 if SMS has been sent, 1 otherwise
+#
+function callFreeMobileSmsApi()
+{
+	local returnCode=0
+
+	local SRC_SCRIPT_NAME=`basename "$0"`
+	local SMS_CONTENT="[$SRC_SCRIPT_NAME] $*"
+
+	OUTPUT=`curl -X POST "https://smsapi.free-mobile.fr/sendmsg?user=$USER&pass=$PASS&msg=$MSG" 2>&1`;
+	if [ $? -eq 0 ]
+	then
+		echo "SMS sent"
+	else
+		returnCode=1
+		echo "[ERROR] Fail to send SMS. Details: $OUTPUT"
+	fi
+
+	return $returnCode
+}
