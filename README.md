@@ -2,7 +2,7 @@
 
 A Bash API for Free Mobile notification service
 
-![Stable version](https://img.shields.io/badge/stable-1.0.1-blue.svg)
+![Stable version](https://img.shields.io/badge/stable-1.0.2-blue.svg)
 [![BSD-3 license](https://img.shields.io/badge/license-BSD--3--Clause-428F7E.svg)](https://tldrlegal.com/license/bsd-3-clause-license-%28revised%29)
 
 *freemobile-smsapi* is a Bash library which allows to use Free Mobile SMS notification service.
