@@ -55,7 +55,7 @@ function callFreeMobileSmsApi()
 	local returnCode=0
 
 	local SRC_SCRIPT_NAME=`basename "$0"`
-	local SMS_CONTENT="[$SRC_SCRIPT_NAME] $*"
+	local MSG="[$SRC_SCRIPT_NAME] $*"
 
 	OUTPUT=`curl -X POST "https://smsapi.free-mobile.fr/sendmsg?user=$USER&pass=$PASS&msg=$MSG" 2>&1`;
 	if [ $? -eq 0 ]
