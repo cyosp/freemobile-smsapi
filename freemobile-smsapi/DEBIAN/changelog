@@ -1,0 +1,17 @@
+freemobile-smsapi (1.0.2) stable; urgency=low
+ 
+  * Fix: Manage SMS content special characters
+ 
+ -- CYOSP <cyosp@users.noreply.github.com>  Wed, 07 Dec 2016 22:05:06 +0100
+
+freemobile-smsapi (1.0.1) stable; urgency=low
+ 
+  * Fix: SMS content was empty
+
+ -- CYOSP <cyosp@users.noreply.github.com>  Wed, 07 Dec 2016 07:07:28 +0100
+ 
+freemobile-smsapi (1.0.0) stable; urgency=low
+ 
+  * First version
+
+ -- CYOSP <cyosp@users.noreply.github.com>  Sun, 04 Dec 2016 16:18:24 +0100
