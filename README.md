@@ -106,5 +106,5 @@ sudo dpkg -i $(ls -mr freemobile-smsapi*.deb | cut -d ',' -f 1)
 
 ```bash
 # Remove the Debian package
-sudo apt-get remove freemobile-smsapi
+sudo dpkg -r freemobile-smsapi
 ```
