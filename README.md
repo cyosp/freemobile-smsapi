@@ -78,17 +78,20 @@ Exit code will be `0` in case of success, `1` otherwise.
 
 A [Debian](https://www.debian.org/) package is available at [http://packages.cyosp.com/debian](http://packages.cyosp.com/debian) for:
  * [Jessie](https://www.debian.org/releases/jessie/) version
-  * amd64 architecture
+ * amd64 architecture
 
 Steps to install it are:
 
  * Receive CYOSP GPG key from key server:
+
     `sudo gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys D177D90A`
 
  * Add GPG key to apt:
+
     `sudo gpg -a --export D177D90A | apt-key add -`
 
  * Add CYOSP repository:
+
     ```bash
     sudo cat << EOF >> /etc/apt/sources.list
 
@@ -99,9 +102,11 @@ Steps to install it are:
     ```
 
  * Update repository database:
+
     `sudo apt-get update`
 
- * Install package
+ * Install package:
+ 
     `sudo apt-get install freemobile-smsapi`
 
 ## Create the Debian package
