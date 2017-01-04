@@ -74,9 +74,39 @@ In this example *My first SMS* will be sent to the phone number associated with 
 
 Exit code will be `0` in case of success, `1` otherwise.
 
-### Build a Debian package
+### Install
 
-You can build a Debian package with the following commands:
+A [Debian](https://www.debian.org/) package is available at [http://packages.cyosp.com/debian](http://packages.cyosp.com/debian) for:
+ * [Jessie](https://www.debian.org/releases/jessie/) version
+  * amd64 architecture
+
+Steps to install it are:
+
+ * Receive CYOSP GPG key from key server:
+    `sudo gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys D177D90A`
+
+ * Add GPG key to apt:
+    `sudo gpg -a --export D177D90A | apt-key add -`
+
+ * Add CYOSP repository:
+    ```bash
+    sudo cat << EOF >> /etc/apt/sources.list
+
+    # CYOSP packages
+    deb http://packages.cyosp.com/debian jessie main
+
+    EOF
+    ```
+
+ * Update repository database:
+    `sudo apt-get update`
+
+ * Install package
+    `sudo apt-get install freemobile-smsapi`
+
+## Create the Debian package
+
+You can create the Debian package with the following commands:
 
 ```bash
 # Move to the repository directory
@@ -87,24 +117,4 @@ sudo dpkg-deb --build freemobile-smsapi
 VERSION=$(grep "Version" freemobile-smsapi/DEBIAN/control | cut -d ' ' -f 2)
 ARCH=$(grep "Architecture" freemobile-smsapi/DEBIAN/control | cut -d ' ' -f 2)
 mv freemobile-smsapi.deb freemobile-smsapi_${VERSION}_${ARCH}.deb
-```
-
-### Install the Debian package
-
-These steps allow you to install [freemobile-smsapi](http://github.com/cyosp/freemobile-smsapi) Debian package:
-
-```bash
-# Move to the repository directory
-cd /github/freemobile-smsapi/repository/path
-# Install the latest Debian package version
-sudo dpkg -i $(ls -mr freemobile-smsapi*.deb | cut -d ',' -f 1)
-```
-
-### Remove the Debian package
-
-[freemobile-smsapi](http://github.com/cyosp/freemobile-smsapi) Debian package can be removed with this command line:
-
-```bash
-# Remove the Debian package
-sudo dpkg -r freemobile-smsapi
 ```
