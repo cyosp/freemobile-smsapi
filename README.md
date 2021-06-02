@@ -74,42 +74,7 @@ In this example *My first SMS* will be sent to the phone number associated with 
 
 Exit code will be `0` in case of success, `1` otherwise.
 
-### Install
-
-A [Debian](https://www.debian.org/) package is available at [http://packages.cyosp.com/debian](http://packages.cyosp.com/debian) for:
- * [stretch](https://www.debian.org/releases/stretch/) version
- * amd64 architecture
-
-Steps to install it are:
-
- * Receive CYOSP GPG key from key server:
-
-    `sudo gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 15205D0CC73A9DF1`
-
- * Add GPG key to apt:
-
-    `sudo gpg -a --export 15205D0CC73A9DF1 | apt-key add -`
-
- * Add CYOSP repository:
-
-    ```bash
-    sudo cat << EOF > /etc/apt/sources.list.d/cyosp.list
-
-    # CYOSP packages
-    deb http://packages.cyosp.com/debian stretch main
-
-    EOF
-    ```
-
- * Update repository database:
-
-    `sudo apt update`
-
- * Install package:
- 
-    `sudo apt install freemobile-smsapi`
-
-## Create the Debian package
+## Create Debian package
 
 You can create the Debian package with the following commands:
 
